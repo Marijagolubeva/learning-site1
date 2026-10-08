@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eee8f5">
+  <title>Fenīčka · Mācību dārzs</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <button class="menu-toggle" id="menuToggle" aria-controls="sidebar" aria-expanded="true" aria-label="Izvēlne">☰</button>
+  <button id="menuBackdrop" class="menu-backdrop" aria-label="Aizvērt izvēlni" tabindex="-1" hidden></button>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="./index.html"><span class="brand-icon">✿</span> Mācību dārzs</a>
+    <p class="eyebrow" data-i18n="yourSpace"></p>
+    <nav aria-label="Mācības" id="navigation">
+      <details open><summary>⌂ <span data-i18n="school"></span></summary>
+        <button class="subject-button" id="mathButton"><span data-i18n="math"></span><img class="math-sticker" src="assets/math-icon.png" alt="" width="42" height="42"></button>
+      </details>
+    </nav>
+  </aside>
+    <section class="pet-card pet-pair" aria-label="Mācību draugi">
+      <div class="pet-character"><div class="rabbit" aria-hidden="true">🐰</div><h2>Фенечка</h2><div class="pet-supplies"><span title="Ēdiens">🥕 🥣</span><span title="Ūdens">💧 🥣</span></div></div>
+      <div class="shared-treats"><span aria-hidden="true">🍪</span><strong id="treatCount">0</strong><small data-i18n="treatsLabel"></small></div>
+      <div class="pet-character"><div class="rabbit" aria-hidden="true">🦊</div><h2>Жулик</h2><div class="pet-supplies"><span title="Ēdiens">🍗 🥣</span><span title="Ūdens">💧 🥣</span></div></div>
+      <p id="petMessage" aria-live="polite"></p>
+    </section>
+  <main id="main">
+    <header class="topbar"><button id="themeToggle" class="theme-toggle" aria-haspopup="dialog" aria-label="Izvēlēties krāsas">🎨 <span data-i18n="themeChoice"></span></button></header>
+    <div class="content">
+      <div class="breadcrumbs"><span data-i18n="school"></span> / <span data-i18n="math"></span></div>
+      <section class="welcome"><div><p class="eyebrow" data-i18n="littleSteps"></p><h1 data-i18n="welcome"></h1><p data-i18n="welcomeText"></p></div><img class="welcome-art" src="assets/math-icon.png" alt="" width="140" height="140"></section>
+      <section id="classView" aria-labelledby="classTitle"><h2 id="classTitle" data-i18n="chooseClass"></h2><p class="class-hint" data-i18n="classHint"></p><div id="classCards" class="class-cards"></div></section>
+      <section id="topicView" hidden><button class="back-button" id="backToClasses" data-i18n="backClasses"></button><h2 id="selectedClassTitle"></h2><div id="topicCards"></div></section>
+      <section id="lessonView" hidden>
+      <button class="back-button" id="backToTopics" data-i18n="backTopics"></button>
+      <section class="overview"><div class="overview-title"><span>∑</span><div><p class="eyebrow" data-i18n="math"></p><h2 data-i18n="grade"></h2></div></div></section>
+      <article class="lesson-card" id="lesson">
+        <div class="lesson-heading"><span class="tag" data-i18n="firstTopic"></span><button class="info-button" id="infoToggle" aria-expanded="false" aria-controls="lessonInfo" aria-label="Informācija">ⓘ</button></div>
+        <h2 data-i18n="fractions"></h2><p class="lesson-subtitle" data-i18n="subtitle"></p>
+        <div id="lessonInfo" class="info-panel" hidden data-i18n="info"></div>
+        <div class="lesson-grid"><section><h3 data-i18n="whatIsFraction"></h3><p data-i18n="explanation"></p><div class="definition"><p><strong data-i18n="numerator"></strong> — <span data-i18n="numeratorText"></span></p><p><strong data-i18n="denominator"></strong> — <span data-i18n="denominatorText"></span></p></div></section><section class="example"><p class="eyebrow" data-i18n="example"></p><div class="fraction-visual" role="img" id="fractionVisual"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span></div><div class="fraction-number">3 / 4</div><p data-i18n="exampleText"></p></section></div>
+        <section class="remember"><span aria-hidden="true">✦</span><div><h3 data-i18n="remember"></h3><p data-i18n="rememberText"></p></div></section>
+        <section class="practice"><h3 data-i18n="practiceTitle"></h3><p data-i18n="practiceQuestion"></p><form id="practiceForm"><label for="practiceAnswer" data-i18n="answerLabel"></label><input id="practiceAnswer" autocomplete="off" placeholder="a/b" required><button type="submit" data-i18n="checkAnswer"></button></form><p id="practiceResult" role="status"></p></section>
+        <label class="completion"><input type="checkbox" id="completed"><span><strong data-i18n="complete"></strong><small data-i18n="saved"></small></span><span class="completion-flower" aria-hidden="true">✿</span></label>
+        <p id="storageNotice" role="status" hidden></p>
+      </article>
+      </section>
+      <footer data-i18n="footer"></footer>
+    </div>
+  </main>
+  <dialog id="themeDialog" class="theme-dialog" aria-labelledby="themeTitle"><button class="dialog-close" id="closeThemes" aria-label="Aizvērt">×</button><h2 id="themeTitle" data-i18n="themeTitle"></h2><p data-i18n="themeHint"></p><div id="themeOptions" class="theme-options"></div></dialog>
+  <dialog id="progressDialog" class="progress-dialog" aria-labelledby="progressTitle"><button class="dialog-close" id="closeProgress" aria-label="Aizvērt">×</button><h2 id="progressTitle"></h2><p id="progressCount"></p><progress id="detailProgress" max="1" value="0" aria-label="Progress"></progress></dialog>
+</body>
+</html>
+
