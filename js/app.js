@@ -1,7 +1,7 @@
 // All translated text lives here. Add matching keys in both languages.
 const translations = {
   lv: {
-    themeChoice:'Krāsas', themeTitle:'Izvēlies savu noskaņu', themeHint:'10 pasteļtoņi, balta un tumša tēma. Pasteļtoņus vēl varēsim mainīt.', treatsLabel:'Par uzdevumiem', foxStart:'Žuļiks arī mācās kopā ar tevi!', translationHint:'Vidējais klikšķis — tulkojums uz 10 sekundēm.', chooseClass:'Izvēlies klasi', classHint:'Katram mācību gadam — savs mazais ceļš.', backClasses:'← Visas klases', backTopics:'← Tēmas', soon:'Tēmas vēl tiek gatavotas.', available:'Atvērt tēmas', chooseTopic:'Izvēlies tēmu',
+    pastelThemes:'Pasteļtoņi', neutralThemes:'Balta un melna', themeChoice:'Krāsas', themeTitle:'Izvēlies savu noskaņu', themeHint:'Izvēlies vienu no desmit pasteļtoņiem vai neitrālu tēmu zemāk.', treatsLabel:'Par uzdevumiem', foxStart:'Žuļiks arī mācās kopā ar tevi!', translationHint:'Vidējais klikšķis — tulkojums uz 10 sekundēm.', chooseClass:'Izvēlies klasi', classHint:'Katram mācību gadam — savs mazais ceļš.', backClasses:'← Visas klases', backTopics:'← Tēmas', soon:'Tēmas vēl tiek gatavotas.', available:'Atvērt tēmas', chooseTopic:'Izvēlies tēmu',
     yourSpace:'Tava mācību vieta', school:'Skola', math:'Matemātika', grade:'6. klase', fractions:'Daļas',
     studyBuddy:'TAVA MĀCĪBU DRAUDZENE', petName:'Фенечка', petPlaceholder:'Pagaidām — zaķīša prototips',
     petStart:'Mācīsimies kopā! Soli pa solim tev izdosies. ♡', petDone:'Lieliski! Tu esi apguvusi pirmo tēmu. 🥕',
@@ -16,7 +16,7 @@ const translations = {
     menu:'Atvērt vai aizvērt izvēlni', information:'Informācija par tēmu', storage:'Pārlūkprogramma neļauj saglabāt datus. Progress darbosies tikai līdz lapas aizvēršanai.'
   },
   ru: {
-    themeChoice:'Цвета', themeTitle:'Выбери своё настроение', themeHint:'10 пастельных оттенков, белая и тёмная тема. Пастельные цвета ещё можно изменить.', treatsLabel:'За задания', foxStart:'Жулик тоже учится вместе с тобой!', translationHint:'Средний клик — перевод на 10 секунд.', chooseClass:'Выбери класс', classHint:'У каждого учебного года — свой маленький путь.', backClasses:'← Все классы', backTopics:'← Темы', soon:'Темы ещё готовятся.', available:'Открыть темы', chooseTopic:'Выбери тему',
+    pastelThemes:'Пастельные оттенки', neutralThemes:'Белый и чёрный', themeChoice:'Цвета', themeTitle:'Выбери своё настроение', themeHint:'Выбери один из десяти пастельных оттенков или нейтральную тему ниже.', treatsLabel:'За задания', foxStart:'Жулик тоже учится вместе с тобой!', translationHint:'Средний клик — перевод на 10 секунд.', chooseClass:'Выбери класс', classHint:'У каждого учебного года — свой маленький путь.', backClasses:'← Все классы', backTopics:'← Темы', soon:'Темы ещё готовятся.', available:'Открыть темы', chooseTopic:'Выбери тему',
     yourSpace:'Твоё место для учёбы', school:'Школа', math:'Математика', grade:'6 класс', fractions:'Дроби',
     studyBuddy:'ТВОЯ ПОДРУГА В УЧЁБЕ', petName:'Фенечка', petPlaceholder:'Пока — заглушка кролика',
     petStart:'Давай учиться вместе! Шаг за шагом всё получится. ♡', petDone:'Здорово! Ты прошла первую тему. 🥕',
@@ -52,20 +52,29 @@ function saveState() {
   catch (error) { storageAvailable = false; }
 }
 
+// Ten pastel palettes, then two neutral palettes in their own section.
 const themes = [
-  ['lavender','Lavanda','#eee8f5','#faf8f5','#78628f'],
-  ['rose','Roze','#f6e2e7','#fff8fa','#9c6275'],
-  ['peach','Persiks','#f6e4d7','#fffaf5','#956645'],
-  ['lemon','Citrons','#f1edce','#fffdf4','#847437'],
-  ['mint','Piparmētra','#dcefe5','#f5fcf8','#527c66'],
-  ['sky','Debesis','#dfeaf5','#f7faff','#557595'],
-  ['lilac','Ceriņi','#e9dff3','#fbf8ff','#806394'],
-  ['sage','Salvija','#e3e9d9','#fafcf5','#677c4e'],
-  ['sand','Smiltis','#eee5d8','#fcfaf6','#867253'],
-  ['aqua','Ūdens','#dceef0','#f5fcfd','#4f8085'],
-  ['white','Balta','#f3f3f3','#ffffff','#585868'],
-  ['dark','Tumša','#252633','#181922','#c4b6df']
+  ['lavender','Rozā lavanda','#eee0ef','#fcf7fc','#936b9c'],
+  ['sky','Zils sarma','#dce9f5','#f6faff','#527ba2'],
+  ['lilac','Gaiša malva','#eadfee','#fcf8fd','#94739f'],
+  ['wheat','Kvieši','#eee2bd','#fdfaf1','#91773c'],
+  ['mint','Gaiša piparmētra','#d8eee2','#f4fbf7','#517f68'],
+  ['cream','Krēmkrāsa','#f2ead7','#fffdf6','#8b7852'],
+  ['aqua','Gaišs tirkīzs','#d5ecec','#f4fcfc','#4f8286'],
+  ['salmon','Laškrāsa','#f3dcd6','#fff8f6','#a4695d'],
+  ['lime','Gaišs dzeltenzaļš','#e9efcf','#fbfdf4','#748347'],
+  ['caramel','Gaiša karamele','#efdfcc','#fdf9f4','#9a744c'],
+  ['white','Balta','#f1f1f3','#ffffff','#60616c'],
+  ['dark','Melna','#252633','#181922','#c4b6df']
 ];
+// Russian palette names appear with the same temporary sentence translation.
+const themeNamesRu = ['Розово-лавандовый','Синий иней','Светлая мальва','Пшеничный','Светло-мятный','Сливочный','Светло-бирюзовый','Лососевый','Очень светлый жёлто-зелёный','Светло-карамельный','Белый','Чёрный'];
+function progressColor(number) {
+  // Progress uses the current theme's accent instead of a fixed red/green palette.
+  const accentShare = 65 + classProgress(number) * .35;
+  return `color-mix(in srgb, var(--purple) ${accentShare}%, var(--muted))`;
+}
+
 function applyTheme() {
   const theme = themes.find(item => item[0] === state.theme) || themes[0];
   state.theme = theme[0];
@@ -82,14 +91,16 @@ function applyTheme() {
   document.querySelectorAll('[data-theme-option]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeOption === state.theme)));
 }
 function buildThemes() {
-  const container = document.querySelector('#themeOptions');
-  themes.forEach(theme => {
+  themes.forEach((theme, index) => {
     const button = document.createElement('button');
     button.className = 'theme-option';
     button.dataset.themeOption = theme[0];
-    button.innerHTML = `<span class="theme-swatch" style="background:${theme[2]};border-color:${theme[4]}"></span><strong>${theme[1]}</strong>`;
+    button.innerHTML = `<span class="theme-swatch" style="background:${theme[2]};border-color:${theme[4]}"></span>`;
+    const name = document.createElement('strong');
+    putTranslatedText(name, theme[1], themeNamesRu[index]);
+    button.append(name);
     button.addEventListener('click', () => { state.theme = theme[0]; applyTheme(); saveState(); document.querySelector('#themeDialog').close(); });
-    container.append(button);
+    document.querySelector(index < 10 ? '#themeOptions' : '#neutralThemeOptions').append(button);
   });
 }
 
@@ -166,7 +177,21 @@ document.addEventListener('contextmenu', event => {
 });
 
 let selectedClass = 6;
-const shapes = ['circle','square','diamond','hexagon','triangle','circle','diamond','square','hexagon','circle','triangle','diamond'];
+// Twelve distinct SVG silhouettes. Text is a separate layer and never rotates.
+const shapes = [
+  '<circle cx="50" cy="50" r="42"/>',
+  '<rect x="10" y="10" width="80" height="80" rx="8"/>',
+  '<polygon points="50,5 95,50 50,95 5,50"/>',
+  '<polygon points="50,5 96,90 4,90"/>',
+  '<polygon points="50,5 94,37 77,90 23,90 6,37"/>',
+  '<polygon points="27,9 73,9 96,50 73,91 27,91 4,50"/>',
+  '<polygon points="50,5 85,22 94,61 70,92 30,92 6,61 15,22"/>',
+  '<polygon points="30,7 70,7 93,30 93,70 70,93 30,93 7,70 7,30"/>',
+  '<polygon points="50,4 63,33 95,36 71,58 79,90 50,73 21,90 29,58 5,36 37,33"/>',
+  '<path d="M50 91 C38 79 7 61 7 34 C7 8 36 3 50 24 C64 3 93 8 93 34 C93 61 62 79 50 91Z"/>',
+  '<path d="M50 8 C63 -1 76 9 73 25 C91 19 103 37 86 50 C103 63 91 81 73 75 C76 91 63 101 50 92 C37 101 24 91 27 75 C9 81 -3 63 14 50 C-3 37 9 19 27 25 C24 9 37 -1 50 8Z"/>',
+  '<path d="M14 10 H86 V48 C86 69 71 83 50 95 C29 83 14 69 14 48Z"/>'
+];
 function className(number) { return `${number}. klase`; }
 function classProgress(number) { return number === 6 && state.completed ? 100 : 0; }
 function progressDetails(number) {
@@ -178,14 +203,14 @@ function progressDetails(number) {
   const bar = document.querySelector('#detailProgress');
   bar.max = total || 1;
   bar.value = done;
-  bar.style.setProperty('--progress-color', `hsl(${classProgress(number) * 1.2} 45% 48%)`);
+  bar.style.setProperty('--progress-color', progressColor(number));
   document.querySelector('#progressDialog').showModal();
 }
 function addProgressShape(container, number) {
   const shape = document.createElement('button');
-  shape.className = `shape ${shapes[number - 1]}`;
-  shape.innerHTML = `<span>${classProgress(number)}%</span>`;
-  shape.style.setProperty('--progress-color', `hsl(${classProgress(number) * 1.2} 45% 48%)`);
+  shape.className = 'shape progress-shape';
+  shape.innerHTML = `<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">${shapes[number - 1]}</svg><span>${classProgress(number)}%</span>`;
+  shape.style.setProperty('--progress-color', progressColor(number));
   shape.setAttribute('aria-label', `${className(number)}: ${classProgress(number)}%. Progresa informācija`);
   shape.title = 'Labais klikšķis — progresa informācija';
   shape.addEventListener('contextmenu', event => { event.preventDefault(); progressDetails(number); });
